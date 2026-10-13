@@ -49,7 +49,7 @@ button { font: inherit; color: inherit; }
 }
 .eyebrow {
   margin: 0;
-  font: 500 10.5px/1.3 var(--mono);
+  font: 500 11px/1.3 var(--mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -131,7 +131,7 @@ h1 {
 .slider { display: grid; gap: 6px; margin-top: 16px; }
 .slider .eyebrow { display: flex; justify-content: space-between; }
 .slider output { color: var(--ink); }
-.slider .ends { display: flex; justify-content: space-between; font: 10px var(--mono); color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+.slider .ends { display: flex; justify-content: space-between; font: 11px var(--mono); color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
 input[type="range"] { width: 100%; accent-color: var(--tape); }
 
 .credits { margin-top: auto; font: 10px/1.5 var(--mono); color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 10px; }
@@ -245,7 +245,7 @@ input[type="range"] { width: 100%; accent-color: var(--tape); }
 }
 .legend-head { display: flex; justify-content: space-between; margin-bottom: 7px; }
 .ramp { height: 12px; border: 1px solid var(--ink); }
-.ticks { position: relative; height: 22px; font: 10px var(--mono); }
+.ticks { position: relative; height: 22px; font: 11px var(--mono); }
 .ticks span { position: absolute; top: 0; translate: -50% 0; padding-top: 5px; }
 .ticks span::before { content: ""; position: absolute; top: 0; left: 50%; width: 1px; height: 4px; background: var(--ink); }
 .ticks span:first-child { translate: 0 0; } .ticks span:first-child::before { left: 0; }
@@ -262,7 +262,7 @@ input[type="range"] { width: 100%; accent-color: var(--tape); }
   padding: 7px 14px;
   background: var(--paper);
   border-top: 1.5px solid var(--ink);
-  font: 10.5px var(--mono);
+  font: 11px var(--mono);
   color: var(--ink-soft);
   white-space: nowrap;
   overflow: hidden;
@@ -307,5 +307,5 @@ input[type="range"] { width: 100%; accent-color: var(--tape); }
   h1 { font-size: 64px; }
   .legend { top: 52px; bottom: auto; width: calc(100% - 28px); right: 14px; }
   .tag span, .reg { display: none; }
-  .camera { font-size: 9.5px; gap: 12px; }
+  .camera { gap: 12px; }
 }
