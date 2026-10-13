@@ -1,0 +1,8 @@
+*.tif
+*.kmz
+work/
+tiles/
+.recall/
+__pycache__/
+*.log
+.impeccable/

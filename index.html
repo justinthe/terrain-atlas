@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ece6d6" />
+  <meta name="description" content="Drone terrain survey of the Humbang Hasundutan Food Estate, North Sumatra — orthomosaic and surface model in 3D." />
+  <title>Humbang Terrain Sheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Martian+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+  <main class="sheet">
+    <aside class="block" aria-label="Survey sheet">
+      <header class="block-head">
+        <p class="eyebrow">Survey sheet 01 · Humbang Hasundutan</p>
+        <h1>Food<br />Estate</h1>
+        <p class="sub">Drone terrain survey, North Sumatra · <time datetime="2021-10-03">03 Oct 2021</time></p>
+      </header>
+
+      <section class="ledger" aria-label="Survey figures">
+        <dl id="ledger">
+          <div><dt>Surveyed area</dt><dd data-k="area">—</dd></div>
+          <div><dt>Elevation</dt><dd data-k="elev">—</dd></div>
+          <div><dt>Local relief</dt><dd data-k="relief">—</dd></div>
+          <div><dt>Ground sample</dt><dd>10.5 cm</dd></div>
+          <div><dt>Source CRS</dt><dd>UTM 47N</dd></div>
+          <div><dt>Datum shift</dt><dd data-k="datum">—</dd></div>
+        </dl>
+      </section>
+
+      <section class="stations" aria-label="Viewpoints">
+        <h2 class="eyebrow">Stations</h2>
+        <nav id="stations"></nav>
+      </section>
+
+      <section class="controls" aria-label="Map controls">
+        <h2 class="eyebrow">Layers</h2>
+        <div class="toggles">
+          <button class="toggle" data-layer="ortho" aria-pressed="true">Orthomosaic</button>
+          <button class="toggle" data-layer="contours" aria-pressed="true">Contours 2 m</button>
+          <button class="toggle" data-layer="hillshade" aria-pressed="true">Hillshade</button>
+          <button class="toggle" data-layer="orbit" aria-pressed="false">Orbit</button>
+        </div>
+        <label class="slider">
+          <span class="eyebrow">Vertical scale <output id="scaleOut">1.0×</output></span>
+          <input id="scale" type="range" min="1" max="5" step="0.1" value="1" />
+          <span class="ends"><span>True</span><span>Exaggerated</span></span>
+        </label>
+      </section>
+
+      <footer class="credits">
+        Imagery © Esri, Maxar · Global DEM: AWS Terrain Tiles (SRTM et al.) · Drone survey 2021 · Built with MapLibre &amp; PMTiles
+      </footer>
+    </aside>
+
+    <section class="stage" aria-label="Terrain maps">
+      <div id="map-surface" class="pane"></div>
+      <div id="relief-clip" class="pane clip"><div id="map-relief" class="pane"></div></div>
+
+      <div class="tag tag-a"><b>A</b> Surface <span>ortho + satellite</span></div>
+      <div class="tag tag-b"><b>B</b> Relief <span>DSM · contours</span></div>
+
+      <div class="tape" role="slider" tabindex="0" aria-label="Surface / relief divider" aria-valuemin="10" aria-valuemax="90" aria-valuenow="50">
+        <span class="tape-flag">◂ A │ B ▸</span>
+      </div>
+
+      <div class="reg r-tl"></div><div class="reg r-tr"></div><div class="reg r-bl"></div><div class="reg r-br"></div>
+
+      <div id="probe" class="probe" role="status" aria-live="polite"><b>—</b><span></span></div>
+
+      <div class="legend" aria-label="Elevation colour scale">
+        <div class="legend-head"><span class="eyebrow">Elevation · m</span><span class="eyebrow dim">auto-fit to view</span></div>
+        <div class="ramp" id="ramp"></div>
+        <div class="ticks" id="ticks"></div>
+      </div>
+
+      <div class="camera" id="camera" aria-hidden="true"></div>
+
+      <div class="loading" id="loading"><span class="scan"></span><span class="eyebrow">Surveying terrain…</span></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/pmtiles@4.4.1/dist/pmtiles.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
